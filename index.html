@@ -214,16 +214,37 @@ onSnapshot,
 serverTimestamp,
 getDocs 
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+  // Get the current hostname from the browser
+const hostname = window.location.hostname;
 
-const FIREBASE_CONFIG = {
-apiKey: "AIzaSyCiw10NNKgORm7tYthtvSglkDyO8fmuTqk",
-authDomain: authDomainValue,
-projectId: "sanddollarsurvey2025",
-storageBucket: "sanddollarsurvey2025.firebasestorage.app",
-messagingSenderId: "980365100199",
-appId: "1:980365100199:web:5929df6358a25057e78782",
-measurementId: "G-ECY2YFY394"
+// Dynamic check for local vs. deployed authDomain
+let authDomainValue;
+if (hostname === "localhost" || hostname === "127.0.0.1") {
+    // FIX 2: Resolves the "Authentication Error" on your localhost
+    authDomainValue = hostname; 
+} else {
+    authDomainValue = "sanddollarsurvey2025.firebaseapp.com";
+}
+
+// Your UPDATED web app's Firebase configuration
+const firebaseConfig = {
+    // FIX 1: Replace the old, deleted key with your new, active key
+    apiKey: "AIzaSyCiw10NNKgORm7tYthtvSglkDyO8fmuTqk", 
+    
+    authDomain: authDomainValue, 
+    
+    projectId: "sanddollarsurvey2025",
+    storageBucket: "sanddollarsurvey2025.firebasestorage.app",
+    messagingSenderId: "980365100199",
+    appId: "1:980365100199:web:5929df6358a25057e78782",
+    measurementId: "G-ECY2YFY394"
 };
+
+// Initialize Firebase (This should now connect successfully!)
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app); 
+// Ensure you have the necessary imports for Firestore/Database
+// e.g., import { getFirestore } from "firebase/firestore";
 
 const APP_ID = FIREBASE_CONFIG.projectId; 
 const COLLECTION_PATH = `/artifacts/${APP_ID}/public/data/survey_responses`;
