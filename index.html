@@ -34,7 +34,7 @@ color: #ef4444;
 <div id="exitScreen" class="hidden text-center py-16">
 <div class="bg-green-50 border border-green-200 rounded-xl p-8 max-w-2xl mx-auto">
 <div class="text-6xl mb-4">✅</div>
-<h2 class="text-2xl font-bold text-green-800 mb-4">Thank You For Your Time</h2>
+<h2 class="text-2xl font-bold text-green-800 mb-4">Thank Thank You For Your Time</h2>
 <p class="text-green-700 mb-6">We respect your decision not to participate in the survey at this time.</p>
 <p class="text-green-600">Your privacy and consent are important to us. You may close this window now.</p>
 </div>
@@ -61,9 +61,9 @@ color: #ef4444;
 <p class="text-base text-gray-600 mb-4">0.0. Permission to Complete Survey</p>
 <p class="text-sm italic text-gray-500 mb-6">This anonymous survey is for academic research only and is designed to assess public attitudes toward digital currency incentives in The Bahamas. Your responses will be kept confidential and used solely for this research paper. Do you agree to participate in this survey?</p>
 <div class="flex flex-wrap gap-4">
-<input type="radio" id="consent_yes" name="consent" value="Yes" class="hidden">
+<input type="radio" id="consent_yes" name="consent" value="Yes" class="hidden" required>
 <label for="consent_yes" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">Yes, I consent to participate</label>
-<input type="radio" id="consent_no" name="consent" value="No" class="hidden">
+<input type="radio" id="consent_no" name="consent" value="No" class="hidden" required>
 <label for="consent_no" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">No, I do not consent</label>
 </div>
 
@@ -77,32 +77,161 @@ Continue to Survey Questions
 <div id="surveyQuestions" class="hidden">
 <section id="section-demographics">
     <h3 class="text-xl font-bold text-gray-700 mb-4 border-t pt-6">Section 0: Demographic Information</h3>
+    <p class="text-sm text-gray-600 mb-6">These questions help us understand if adoption barriers or incentives vary across different groups.</p>
+
 <div class="mb-6">
 <label class="block text-gray-800 font-semibold mb-3 required-field">A. Gender:</label>
 <div class="flex flex-wrap gap-4">
+<input type="radio" id="gender_f" name="gender" value="Female" class="hidden" required>
+<label for="gender_f" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">Female</label>
+<input type="radio" id="gender_m" name="gender" value="Male" class="hidden">
+<label for="gender_m" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">Male</label>
+<input type="radio" id="gender_o" name="gender" value="Other/Prefer Not to Say" class="hidden">
+<label for="gender_o" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">Other / Prefer Not to Say</label>
+</div>
+</div>
+
+<div class="mb-6">
+<label class="block text-gray-800 font-semibold mb-3 required-field">B. Age Range:</label>
+<div class="flex flex-wrap gap-4">
+<input type="radio" id="age_18_25" name="age" value="18-25" class="hidden" required>
+<label for="age_18_25" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">18-25</label>
+<input type="radio" id="age_26_35" name="age" value="26-35" class="hidden">
+<label for="age_26_35" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">26-35</label>
+<input type="radio" id="age_36_45" name="age" value="36-45" class="hidden">
+<label for="age_36_45" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">36-45</label>
+<input type="radio" id="age_46_55" name="age" value="46-55" class="hidden">
+<label for="age_46_55" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">46-55</label>
+<input type="radio" id="age_56_plus" name="age" value="56+" class="hidden">
+<label for="age_56_plus" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">56+</label>
+</div>
+</div>
+
+<div class="mb-6">
+<label class="block text-gray-800 font-semibold mb-3 required-field">C. Employment Status:</label>
+<div class="flex flex-wrap gap-4">
+<input type="radio" id="emp_full" name="employment" value="Full-Time" class="hidden" required>
+<label for="emp_full" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">Full-Time</label>
+<input type="radio" id="emp_part" name="employment" value="Part-Time" class="hidden">
+<label for="emp_part" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">Part-Time</label>
+<input type="radio" id="emp_self" name="employment" value="Self-Employed" class="hidden">
+<label for="emp_self" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">Self-Employed</label>
+<input type="radio" id="emp_unemp" name="employment" value="Unemployed" class="hidden">
+<label for="emp_unemp" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">Unemployed</label>
+<input type="radio" id="emp_retire" name="employment" value="Retired/Student" class="hidden">
+<label for="emp_retire" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">Retired/Student</label>
+</div>
+</div>
+
+<div class="mb-6">
+<label class="block text-gray-800 font-semibold mb-3 required-field">D. Highest Level of Education Completed:</label>
+<div class="flex flex-wrap gap-4">
+<input type="radio" id="edu_hs" name="education" value="High School/GED" class="hidden" required>
+<label for="edu_hs" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">High School/GED</label>
+<input type="radio" id="edu_assoc" name="education" value="Associate's Degree" class="hidden">
+<label for="edu_assoc" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">Associate's Degree</label>
+<input type="radio" id="edu_bach" name="education" value="Bachelor's Degree" class="hidden">
+<label for="edu_bach" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">Bachelor's Degree</label>
+<input type="radio" id="edu_grad" name="education" value="Graduate Degree or Higher" class="hidden">
+<label for="edu_grad" class="px-6 py-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">Graduate Degree or Higher</label>
 </div>
 </div>
 </section>
 
 <section id="section-barriers">
-    <h3 class="text-xl font-bold text-gray-700 mb-6 border-t pt-6">Section 1: Identifying Current Barriers (Likert Scale)</h3>
-    <div class="mb-8 mt-6">
-<label class="block text-lg font-medium text-gray-800 mb-4 required-field">1. Barrier - Preference for Existing Methods:</label>
-<p class="text-sm text-gray-600 mb-4">"I rarely use the Sand Dollar because my existing payment methods (cash, debit/credit card) are more convenient."</p>
-<div class="flex justify-between space-x-2 sm:space-x-4">
-</div>
-</div>
+    <h3 class="text-xl font-bold text-gray-700 mb-6 border-t pt-6">Section 1: Identifying Current Barriers</h3> 
+    <p class="text-sm text-gray-600 mb-8">Please indicate your level of agreement with the following statements regarding your current use of the Sand Dollar, using a scale of 1 (Strongly Disagree) to 5 (Strongly Agree).</p>
+
+    <div class="mb-8">
+        <label class="block text-lg font-medium text-gray-800 mb-4 required-field">1. Barrier - Preference for Existing Methods:</label>
+        <p class="text-sm text-gray-600 mb-4">"I rarely use the Sand Dollar because my existing payment methods (cash, debit/credit card) are more convenient."</p>
+        <div class="flex justify-between space-x-2 sm:space-x-4">
+            <input type="radio" id="q1_1" name="q1_preference" value="1" class="hidden" required><label for="q1_1" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">1 (Strongly Disagree)</label>
+            <input type="radio" id="q1_2" name="q1_preference" value="2" class="hidden"><label for="q1_2" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">2 (Disagree)</label>
+            <input type="radio" id="q1_3" name="q1_preference" value="3" class="hidden"><label for="q1_3" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">3 (Neutral)</label>
+            <input type="radio" id="q1_4" name="q1_preference" value="4" class="hidden"><label for="q1_4" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">4 (Agree)</label>
+            <input type="radio" id="q1_5" name="q1_preference" value="5" class="hidden"><label for="q1_5" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">5 (Strongly Agree)</label>
+        </div>
+    </div>
+
+    <div class="mb-8">
+        <label class="block text-lg font-medium text-gray-800 mb-4 required-field">2. Barrier - Merchant Acceptance:</label>
+        <p class="text-sm text-gray-600 mb-4">"I would use the Sand Dollar more often if more merchants and vendors accepted it for daily transactions."</p>
+        <div class="flex justify-between space-x-2 sm:space-x-4">
+            <input type="radio" id="q2_1" name="q2_acceptance" value="1" class="hidden" required><label for="q2_1" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">1 (Strongly Disagree)</label>
+            <input type="radio" id="q2_2" name="q2_acceptance" value="2" class="hidden"><label for="q2_2" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">2 (Disagree)</label>
+            <input type="radio" id="q2_3" name="q2_acceptance" value="3" class="hidden"><label for="q2_3" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">3 (Neutral)</label>
+            <input type="radio" id="q2_4" name="q2_acceptance" value="4" class="hidden"><label for="q2_4" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">4 (Agree)</label>
+            <input type="radio" id="q2_5" name="q2_acceptance" value="5" class="hidden"><label for="q2_5" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">5 (Strongly Agree)</label>
+        </div>
+    </div>
+
+    <div class="mb-8">
+        <label class="block text-lg font-medium text-gray-800 mb-4 required-field">3. Barrier - Trust & Security:</label>
+        <p class="text-sm text-gray-600 mb-4">"I am hesitant to use the Sand Dollar due to concerns about data security and trust in the digital system."</p>
+        <div class="flex justify-between space-x-2 sm:space-x-4">
+            <input type="radio" id="q3_1" name="q3_trust" value="1" class="hidden" required><label for="q3_1" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">1 (Strongly Disagree)</label>
+            <input type="radio" id="q3_2" name="q3_trust" value="2" class="hidden"><label for="q3_2" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">2 (Disagree)</label>
+            <input type="radio" id="q3_3" name="q3_trust" value="3" class="hidden"><label for="q3_3" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">3 (Neutral)</label>
+            <input type="radio" id="q3_4" name="q3_trust" value="4" class="hidden"><label for="q3_4" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">4 (Agree)</label>
+            <input type="radio" id="q3_5" name="q3_trust" value="5" class="hidden"><label for="q3_5" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">5 (Strongly Agree)</label>
+        </div>
+    </div>
 </section>
 
 <section id="section-incentives">
-    <h3 class="text-xl font-bold text-gray-700 mb-6 border-t pt-6">Section 2: Measuring Receptivity to Financial Incentives (Likert Scale)</h3>
-    <div class="border-t pt-6"></div> <div class="mb-8 mt-6">
-<label class="block text-lg font-medium text-gray-800 mb-4 required-field">4. Incentive - General Receptivity:</label>
-<p class="text-sm text-gray-600 mb-4">"I would be significantly more motivated to use the Sand Dollar if it offered me a direct financial benefit (e.g., discounts, rewards)."</p>
-<div class="flex justify-between space-x-2 sm:space-x-4">
-</div>
-</div>
+    <h3 class="text-xl font-bold text-gray-700 mb-6 border-t pt-6">Section 2: Measuring Receptivity to Financial Incentives</h3>
+    <p class="text-sm text-gray-600 mb-8">These questions test whether financial incentives are the key missing piece for adoption.</p>
+
+    <div class="mb-8">
+        <label class="block text-lg font-medium text-gray-800 mb-4 required-field">4. Incentive - General Receptivity:</label>
+        <p class="text-sm text-gray-600 mb-4">"I would be significantly more motivated to use the Sand Dollar if it offered me a direct financial benefit (e.g., discounts, rewards)."</p>
+        <div class="flex justify-between space-x-2 sm:space-x-4">
+            <input type="radio" id="q4_1" name="q4_general_incentive" value="1" class="hidden" required><label for="q4_1" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">1 (Strongly Disagree)</label>
+            <input type="radio" id="q4_2" name="q4_general_incentive" value="2" class="hidden"><label for="q4_2" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">2 (Disagree)</label>
+            <input type="radio" id="q4_3" name="q4_general_incentive" value="3" class="hidden"><label for="q4_3" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">3 (Neutral)</label>
+            <input type="radio" id="q4_4" name="q4_general_incentive" value="4" class="hidden"><label for="q4_4" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">4 (Agree)</label>
+            <input type="radio" id="q4_5" name="q4_general_incentive" value="5" class="hidden"><label for="q4_5" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">5 (Strongly Agree)</label>
+        </div>
+    </div>
+
+    <div class="mb-8">
+        <label class="block text-lg font-medium text-gray-800 mb-4 required-field">5. Incentive - VAT Credit:</label>
+        <p class="text-sm text-gray-600 mb-4">"I would consistently use the Sand Dollar if the Central Bank offered a small VAT credit (e.g., 2-3%) on transactions made using the digital currency."</p>
+        <div class="flex justify-between space-x-2 sm:space-x-4">
+            <input type="radio" id="q5_1" name="q5_vat_credit" value="1" class="hidden" required><label for="q5_1" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">1 (Strongly Disagree)</label>
+            <input type="radio" id="q5_2" name="q5_vat_credit" value="2" class="hidden"><label for="q5_2" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">2 (Disagree)</label>
+            <input type="radio" id="q5_3" name="q5_vat_credit" value="3" class="hidden"><label for="q5_3" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">3 (Neutral)</label>
+            <input type="radio" id="q5_4" name="q5_vat_credit" value="4" class="hidden"><label for="q5_4" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">4 (Agree)</label>
+            <input type="radio" id="q5_5" name="q5_vat_credit" value="5" class="hidden"><label for="q5_5" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">5 (Strongly Agree)</label>
+        </div>
+    </div>
+
+    <div class="mb-8">
+        <label class="block text-lg font-medium text-gray-800 mb-4 required-field">6. Incentive - Switching Rewards:</label>
+        <p class="text-sm text-gray-600 mb-4">"I would consider switching my primary payment method to the Sand Dollar if the government offered a one-time sign-up or bonus reward for initial adoption."</p>
+        <div class="flex justify-between space-x-2 sm:space-x-4">
+            <input type="radio" id="q6_1" name="q6_switching" value="1" class="hidden" required><label for="q6_1" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">1 (Strongly Disagree)</label>
+            <input type="radio" id="q6_2" name="q6_switching" value="2" class="hidden"><label for="q6_2" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">2 (Disagree)</label>
+            <input type="radio" id="q6_3" name="q6_switching" value="3" class="hidden"><label for="q6_3" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">3 (Neutral)</label>
+            <input type="radio" id="q6_4" name="q6_switching" value="4" class="hidden"><label for="q6_4" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">4 (Agree)</label>
+            <input type="radio" id="q6_5" name="q6_switching" value="5" class="hidden"><label for="q6_5" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">5 (Strongly Agree)</label>
+        </div>
+    </div>
+    
+    <div class="mb-8">
+        <label class="block text-lg font-medium text-gray-800 mb-4 required-field">7. Incentive - Overall Importance:</label>
+        <p class="text-sm text-gray-600 mb-4">"Financial incentives (like discounts or rewards) are the single most important factor that would influence my decision to use the Sand Dollar regularly."</p>
+        <div class="flex justify-between space-x-2 sm:space-x-4">
+            <input type="radio" id="q7_1" name="q7_importance" value="1" class="hidden" required><label for="q7_1" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">1 (Strongly Disagree)</label>
+            <input type="radio" id="q7_2" name="q7_importance" value="2" class="hidden"><label for="q7_2" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">2 (Disagree)</label>
+            <input type="radio" id="q7_3" name="q7_importance" value="3" class="hidden"><label for="q7_3" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">3 (Neutral)</label>
+            <input type="radio" id="q7_4" name="q7_importance" value="4" class="hidden"><label for="q7_4" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">4 (Agree)</label>
+            <input type="radio" id="q7_5" name="q7_importance" value="5" class="hidden"><label for="q7_5" class="likert-option flex-1 px-2 py-3 sm:px-4 text-center border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-xs sm:text-sm">5 (Strongly Agree)</label>
+        </div>
+    </div>
 </section>
+
 
 <div id="validationMessage" class="hidden p-4 bg-red-50 border border-red-200 rounded-lg">
 <p class="text-red-700 font-medium">Please complete all required questions before submitting the survey.</p>
@@ -146,18 +275,18 @@ serverTimestamp,
 getDocs 
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
  
-// Get the current hostname from the browser
+// Get the current hostname and path from the browser
 const hostname = window.location.hostname;
 const path = window.location.pathname;
 
-// Dynamic check for local vs. deployed authDomain
+// Dynamic check for local vs. deployed authDomain (using new repo name)
 let authDomainValue;
 if (hostname === "localhost" || hostname === "127.0.0.1") {
     // Resolves the "Authentication Error" on your localhost
     authDomainValue = hostname; 
 } else if (path.includes("sand_dollar_survey_CLEAN")) {
-    // Using the new repository name for GitHub Pages deployment
-    authDomainValue = `${hostname}/sand_dollar_survey_CLEAN`;
+    // Correct format for GitHub Pages sub-path deployment
+    authDomainValue = `${hostname}`; // Firebase will append the path.
 } else {
     // Default fallback (e.g., if hosted on Firebase Hosting)
     authDomainValue = "sanddollarsurvey2025.firebaseapp.com";
@@ -201,7 +330,7 @@ const submitButton = document.getElementById('submitButton');
 const consentNo = document.getElementById('consent_no');
 const consentYes = document.getElementById('consent_yes');
 const resultsContainer = document.getElementById('resultsContainer'); 
-const consentSection = document.getElementById('section-consent'); // <<< NEW: DOM element for consent section
+const consentSection = document.getElementById('section-consent'); // DOM element for consent section
 
 // 1. EXIT SCREEN FUNCTIONALITY
 function showExitScreen() {
@@ -216,7 +345,7 @@ console.log("Showing continue button");
 continueButtonContainer.classList.remove('hidden');
 }
 
-// <<< FIX: This function now hides the consent section properly >>>
+// FIX: This function now hides the consent section properly
 function showSurveyQuestions() {
     console.log("Showing survey questions");
     
@@ -615,192 +744,3 @@ const responses = snapshot.docs
 const totalResponses = responses.length;
 
 if (totalResponses === 0) {
-resultsContainer.innerHTML = `
-                        <div class="flex justify-between items-center mb-8 border-b pb-4">
-                            <h2 class="text-3xl font-extrabold text-gray-900">Live Survey Results</h2>
-                            <button type="button" id="backToSurveyButton" class="bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-xl hover:bg-gray-300">
-                                Back to Survey
-                            </button>
-                        </div>
-                        <p class="text-center text-gray-500 py-10">No participants have consented to the survey yet.</p>
-                    `;
-document.getElementById('backToSurveyButton').addEventListener('click', () => switchView('survey'));
-return;
-}
-
-resultsContainer.innerHTML = `
-                   <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8 border-b pb-4 gap-4">
-                        <div>
-                            <h2 class="text-3xl font-extrabold text-gray-900 mb-2">Live Survey Results</h2>
-                            <p class="text-lg text-gray-500">Total Valid Responses: <span class="font-bold text-gray-900">${totalResponses}</span></p>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-2">
-                            <button type="button" id="exportCsvButton" class="w-full sm:w-auto bg-green-600 text-white font-bold py-2 px-4 rounded-xl hover:bg-green-700 transition-colors">
-                                Export to CSV
-                            </button>
-                            <button type="button" id="backToSurveyButton" class="w-full sm:w-auto bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-xl hover:bg-gray-300 transition-colors">
-                                Back to Survey
-                            </button>
-                        </div>
-                    </div>
-                `;
-
-document.getElementById('backToSurveyButton').addEventListener('click', () => switchView('survey'));
-document.getElementById('exportCsvButton').addEventListener('click', exportDataToCSV);
-
-// --- Demographics ---
-const demographicsSection = document.createElement('section');
-demographicsSection.innerHTML = '<h3 class="text-2xl font-bold text-gray-800 mb-4">Section 0: Demographics</h3>';
-const demoData = {
-'A. Gender': aggregateCounts(responses, 'gender'),
-'B. Age Range': aggregateCounts(responses, 'age'),
-'C. Employment Status': aggregateCounts(responses, 'employment'),
-'D. Education Level': aggregateCounts(responses, 'education')
-};
-const demoContainer = document.createElement('div');
-demoContainer.className = 'grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2';
-for (const [title, data] of Object.entries(demoData)) {
-demoContainer.innerHTML += renderChart(title, data, totalResponses);
-}
-demographicsSection.appendChild(demoContainer);
-resultsContainer.appendChild(demographicsSection);
-
-// --- Barriers ---
-const barriersSection = document.createElement('section');
-barriersSection.innerHTML = `
-    <h3 class="text-2xl font-bold text-gray-800 mb-4 mt-8 pt-4 border-t">Section 1: Identifying Current Barriers</h3>
-    <p class="text-sm text-gray-600 mb-6">Aggregate data on consumer perceived barriers.</p>
-`;
-
-barriersSection.innerHTML += renderLikertChart(
-    "1. Barrier - Preference for Existing Methods",
-    "I rarely use the Sand Dollar because my existing payment methods (cash, debit/credit card) are more convenient.",
-    aggregateLikert(responses, 'q1_preference')
-);
-
-barriersSection.innerHTML += renderLikertChart(
-    "2. Barrier - Merchant Acceptance",
-    "I would use the Sand Dollar more often if more merchants and vendors accepted it for daily transactions.",
-    aggregateLikert(responses, 'q2_acceptance')
-);
-
-barriersSection.innerHTML += renderLikertChart(
-    "3. Barrier - Trust & Security",
-    "I am hesitant to use the Sand Dollar due to concerns about data security and trust in the digital system.",
-    aggregateLikert(responses, 'q3_trust')
-);
-resultsContainer.appendChild(barriersSection);
-
-// --- Incentives ---
-const incentivesSection = document.createElement('section');
-incentivesSection.innerHTML = `
-    <h3 class="text-2xl font-bold text-gray-800 mb-4 mt-8 pt-4 border-t">Section 2: Measuring Receptivity to Financial Incentives</h3>
-    <p class="text-sm text-gray-600 mb-6">Aggregate data on consumer motivation based on financial incentives.</p>
-`;
-
-incentivesSection.innerHTML += renderLikertChart(
-    "4. Incentive - General Receptivity",
-    "I would be significantly more motivated to use the Sand Dollar if it offered me a direct financial benefit (e.g., discounts, rewards).",
-    aggregateLikert(responses, 'q4_general_incentive')
-);
-
-incentivesSection.innerHTML += renderLikertChart(
-    "5. Incentive - VAT Credit",
-    "I would consistently use the Sand Dollar if the Central Bank offered a small VAT credit (e.g., 2-3%) on transactions made using the digital currency.",
-    aggregateLikert(responses, 'q5_vat_credit')
-);
-
-incentivesSection.innerHTML += renderLikertChart(
-    "6. Incentive - Switching Rewards",
-    "I would consider switching my primary payment method to the Sand Dollar if the government offered a one-time sign-up or bonus reward for initial adoption.",
-    aggregateLikert(responses, 'q6_switching')
-);
-
-incentivesSection.innerHTML += renderLikertChart(
-    "7. Incentive - Overall Importance",
-    "Financial incentives (like discounts or rewards) are the single most important factor that would influence my decision to use the Sand Dollar regularly.",
-    aggregateLikert(responses, 'q7_importance')
-);
-
-resultsContainer.appendChild(incentivesSection);
-
-
-}, (error) => {
-    console.error("Error fetching live results:", error);
-    resultsContainer.innerHTML = `<p class="text-center text-red-500 py-10">Error loading data. Check console for details. (Security rules may be blocking access)</p>`;
-});
-}
-
-// -----------------------------------------------------------------
-// --- Export CSV Function ---
-// -----------------------------------------------------------------
-
-// Note: This function needs to fetch all data and format it. 
-async function exportDataToCSV() {
-    if (!db) {
-        alert("Database connection is not available.");
-        return;
-    }
-
-    const q = query(collection(db, COLLECTION_PATH));
-    let snapshot;
-    try {
-        snapshot = await getDocs(q);
-    } catch (error) {
-        console.error("Error fetching data for CSV:", error);
-        alert("Permission Denied: Could not fetch data for export. Ensure you are logged into Firebase with the researcher account.");
-        return;
-    }
-
-    const responses = snapshot.docs
-        .map(doc => doc.data())
-        .filter(response => response.consent === 'Yes');
-
-    if (responses.length === 0) {
-        alert("No consented responses to export.");
-        return;
-    }
-
-    // Define CSV headers (must match keys in the responseData object)
-    const headers = [
-        "timestamp", "consent", "gender", "age", "employment", "education",
-        "q1_preference", "q2_acceptance", "q3_trust", 
-        "q4_general_incentive", "q5_vat_credit", "q6_switching", "q7_importance"
-    ];
-
-    let csvContent = headers.join(",") + "\n";
-
-    responses.forEach(item => {
-        const row = headers.map(fieldName => {
-            let value = item[fieldName] || "";
-
-            // Handle serverTimestamp object for better CSV formatting
-            if (fieldName === "timestamp" && typeof value === 'object' && value !== null && 'seconds' in value) {
-                value = new Date(value.seconds * 1000).toISOString();
-            }
-
-            // Simple CSV sanitation: enclose values with commas or quotes in double quotes
-            if (typeof value === 'string' && (value.includes(',') || value.includes('"') || value.includes('\n'))) {
-                value = `"${value.replace(/"/g, '""')}"`;
-            }
-            return value;
-        }).join(",");
-        csvContent += row + "\n";
-    });
-
-    // Create a Blob and download the file
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement("a");
-    const url = URL.createObjectURL(blob);
-    link.setAttribute("href", url);
-    link.setAttribute("download", `sand_dollar_survey_export_${new Date().toISOString().slice(0, 10)}.csv`);
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    alert(`Successfully exported ${responses.length} responses to CSV.`);
-}
-
-</script>
-</body>
-</html>
