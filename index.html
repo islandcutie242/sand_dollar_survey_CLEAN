@@ -128,7 +128,7 @@ Submit Survey
 </div>
 
 <script type="module">
-// FIX 1: Correctly import all necessary Firebase functions
+// Correctly import all necessary Firebase functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
 import { 
@@ -148,19 +148,24 @@ getDocs
  
 // Get the current hostname from the browser
 const hostname = window.location.hostname;
+const path = window.location.pathname;
 
 // Dynamic check for local vs. deployed authDomain
 let authDomainValue;
 if (hostname === "localhost" || hostname === "127.0.0.1") {
-    // FIX 2: Resolves the "Authentication Error" on your localhost
+    // Resolves the "Authentication Error" on your localhost
     authDomainValue = hostname; 
+} else if (path.includes("sand_dollar_survey_CLEAN")) {
+    // Using the new repository name for GitHub Pages deployment
+    authDomainValue = `${hostname}/sand_dollar_survey_CLEAN`;
 } else {
+    // Default fallback (e.g., if hosted on Firebase Hosting)
     authDomainValue = "sanddollarsurvey2025.firebaseapp.com";
 }
 
 // Your UPDATED web app's Firebase configuration
 const firebaseConfig = {
-    // *** FIX 3: REPLACE THIS PLACEHOLDER WITH YOUR NEW, ACTIVE API KEY ***
+    // *** ACTION REQUIRED: REPLACE THIS PLACEHOLDER WITH YOUR NEW, ACTIVE API KEY ***
     apiKey: "AIzaSyCiw10NNKgORm7tYthtvSglkDyO8fmuTqk", 
     
     authDomain: authDomainValue, 
@@ -172,7 +177,6 @@ const firebaseConfig = {
     measurementId: "G-ECY2YFY394"
 };
 
-// FIX 4: Use the correctly named variable firebaseConfig
 const APP_ID = firebaseConfig.projectId; 
 const COLLECTION_PATH = `/artifacts/${APP_ID}/public/data/survey_responses`;
 
@@ -197,6 +201,7 @@ const submitButton = document.getElementById('submitButton');
 const consentNo = document.getElementById('consent_no');
 const consentYes = document.getElementById('consent_yes');
 const resultsContainer = document.getElementById('resultsContainer'); 
+const consentSection = document.getElementById('section-consent'); // <<< NEW: DOM element for consent section
 
 // 1. EXIT SCREEN FUNCTIONALITY
 function showExitScreen() {
@@ -211,14 +216,19 @@ console.log("Showing continue button");
 continueButtonContainer.classList.remove('hidden');
 }
 
+// <<< FIX: This function now hides the consent section properly >>>
 function showSurveyQuestions() {
-console.log("Showing survey questions");
-surveyQuestions.classList.remove('hidden');
-continueButtonContainer.classList.add('hidden');
+    console.log("Showing survey questions");
+    
+    consentSection.classList.add('hidden'); // Hides the consent intro section
+    
+    surveyQuestions.classList.remove('hidden');
+    continueButtonContainer.classList.add('hidden');
 
-// Scroll to top of survey questions
-surveyQuestions.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Scroll to top of survey questions
+    surveyQuestions.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
 
 // Listen for consent selections
 if (consentNo) {
@@ -372,7 +382,7 @@ submitButton.disabled = false;
 function initializeFirebase() {
 try {
 console.log("Initializing Firebase...");
-// FIX 5: Initialize Firebase services correctly
+// Initialize Firebase services correctly
 const app = initializeApp(firebaseConfig);
 db = getFirestore(app); // Initialize Firestore (db)
 const analytics = getAnalytics(app); // Initialize Analytics
@@ -404,7 +414,7 @@ try {
 await signInAnonymously(auth);
 } catch (error) {
 console.error("Anonymous sign-in failed:", error);
-showMessage('error', 'Authentication Error', 'Please ensure localhost is in your Firebase authorized domains.');
+showMessage('error', 'Authentication Error', 'Please ensure authorized domains are correctly configured in Firebase.');
 }
 }
 isAuthReady = true;
@@ -416,11 +426,11 @@ showMessage('error', 'Initialization Error', 'Failed to initialize Firebase. Che
 }
 }
 
-// FIX 6: Call the initialization function to start the connection process
+// Call the initialization function to start the connection process
 initializeFirebase();
 
 // -----------------------------------------------------------------
-// --- START: RESEARCHER DASHBOARD & EXPORT (FROM PREVIOUS STEP) ---
+// --- START: RESEARCHER DASHBOARD & EXPORT ---
 // -----------------------------------------------------------------
 
 let resultsListener = null; 
@@ -657,9 +667,67 @@ resultsContainer.appendChild(demographicsSection);
 
 // --- Barriers ---
 const barriersSection = document.createElement('section');
-// ... (Rest of fetchAndDisplayResults code is cut for brevity, assuming it was functional) ...
-}
-// ... (Rest of fetchAndDisplayResults code is cut for brevity, assuming it was functional) ...
+barriersSection.innerHTML = `
+    <h3 class="text-2xl font-bold text-gray-800 mb-4 mt-8 pt-4 border-t">Section 1: Identifying Current Barriers</h3>
+    <p class="text-sm text-gray-600 mb-6">Aggregate data on consumer perceived barriers.</p>
+`;
+
+barriersSection.innerHTML += renderLikertChart(
+    "1. Barrier - Preference for Existing Methods",
+    "I rarely use the Sand Dollar because my existing payment methods (cash, debit/credit card) are more convenient.",
+    aggregateLikert(responses, 'q1_preference')
+);
+
+barriersSection.innerHTML += renderLikertChart(
+    "2. Barrier - Merchant Acceptance",
+    "I would use the Sand Dollar more often if more merchants and vendors accepted it for daily transactions.",
+    aggregateLikert(responses, 'q2_acceptance')
+);
+
+barriersSection.innerHTML += renderLikertChart(
+    "3. Barrier - Trust & Security",
+    "I am hesitant to use the Sand Dollar due to concerns about data security and trust in the digital system.",
+    aggregateLikert(responses, 'q3_trust')
+);
+resultsContainer.appendChild(barriersSection);
+
+// --- Incentives ---
+const incentivesSection = document.createElement('section');
+incentivesSection.innerHTML = `
+    <h3 class="text-2xl font-bold text-gray-800 mb-4 mt-8 pt-4 border-t">Section 2: Measuring Receptivity to Financial Incentives</h3>
+    <p class="text-sm text-gray-600 mb-6">Aggregate data on consumer motivation based on financial incentives.</p>
+`;
+
+incentivesSection.innerHTML += renderLikertChart(
+    "4. Incentive - General Receptivity",
+    "I would be significantly more motivated to use the Sand Dollar if it offered me a direct financial benefit (e.g., discounts, rewards).",
+    aggregateLikert(responses, 'q4_general_incentive')
+);
+
+incentivesSection.innerHTML += renderLikertChart(
+    "5. Incentive - VAT Credit",
+    "I would consistently use the Sand Dollar if the Central Bank offered a small VAT credit (e.g., 2-3%) on transactions made using the digital currency.",
+    aggregateLikert(responses, 'q5_vat_credit')
+);
+
+incentivesSection.innerHTML += renderLikertChart(
+    "6. Incentive - Switching Rewards",
+    "I would consider switching my primary payment method to the Sand Dollar if the government offered a one-time sign-up or bonus reward for initial adoption.",
+    aggregateLikert(responses, 'q6_switching')
+);
+
+incentivesSection.innerHTML += renderLikertChart(
+    "7. Incentive - Overall Importance",
+    "Financial incentives (like discounts or rewards) are the single most important factor that would influence my decision to use the Sand Dollar regularly.",
+    aggregateLikert(responses, 'q7_importance')
+);
+
+resultsContainer.appendChild(incentivesSection);
+
+
+}, (error) => {
+    console.error("Error fetching live results:", error);
+    resultsContainer.innerHTML = `<p class="text-center text-red-500 py-10">Error loading data. Check console for details. (Security rules may be blocking access)</p>`;
 });
 }
 
@@ -667,12 +735,72 @@ const barriersSection = document.createElement('section');
 // --- Export CSV Function ---
 // -----------------------------------------------------------------
 
-// Note: You need a full implementation of the exportDataToCSV function here, 
-// which involves fetching data and formatting it. Since you didn't provide it, 
-// I'll leave the function call but assume you will add the implementation 
-// separately, or it was part of the truncated code.
-function exportDataToCSV() {
-    alert("Export function triggered. The full implementation to fetch data and format CSV needs to be here.");
+// Note: This function needs to fetch all data and format it. 
+async function exportDataToCSV() {
+    if (!db) {
+        alert("Database connection is not available.");
+        return;
+    }
+
+    const q = query(collection(db, COLLECTION_PATH));
+    let snapshot;
+    try {
+        snapshot = await getDocs(q);
+    } catch (error) {
+        console.error("Error fetching data for CSV:", error);
+        alert("Permission Denied: Could not fetch data for export. Ensure you are logged into Firebase with the researcher account.");
+        return;
+    }
+
+    const responses = snapshot.docs
+        .map(doc => doc.data())
+        .filter(response => response.consent === 'Yes');
+
+    if (responses.length === 0) {
+        alert("No consented responses to export.");
+        return;
+    }
+
+    // Define CSV headers (must match keys in the responseData object)
+    const headers = [
+        "timestamp", "consent", "gender", "age", "employment", "education",
+        "q1_preference", "q2_acceptance", "q3_trust", 
+        "q4_general_incentive", "q5_vat_credit", "q6_switching", "q7_importance"
+    ];
+
+    let csvContent = headers.join(",") + "\n";
+
+    responses.forEach(item => {
+        const row = headers.map(fieldName => {
+            let value = item[fieldName] || "";
+
+            // Handle serverTimestamp object for better CSV formatting
+            if (fieldName === "timestamp" && typeof value === 'object' && value !== null && 'seconds' in value) {
+                value = new Date(value.seconds * 1000).toISOString();
+            }
+
+            // Simple CSV sanitation: enclose values with commas or quotes in double quotes
+            if (typeof value === 'string' && (value.includes(',') || value.includes('"') || value.includes('\n'))) {
+                value = `"${value.replace(/"/g, '""')}"`;
+            }
+            return value;
+        }).join(",");
+        csvContent += row + "\n";
+    });
+
+    // Create a Blob and download the file
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `sand_dollar_survey_export_${new Date().toISOString().slice(0, 10)}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    alert(`Successfully exported ${responses.length} responses to CSV.`);
 }
 
 </script>
+</body>
+</html>
